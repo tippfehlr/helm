@@ -353,8 +353,8 @@ private:
     bool getGlyphShape (Path& destShape, const FT_Outline& outline, const float scaleX)
     {
         const float scaleY = -scaleX;
-        const short* const contours = outline.contours;
-        const char* const tags = outline.tags;
+        const short* const contours = reinterpret_cast<const short*>(outline.contours);
+        const char* const tags = reinterpret_cast<const char*>(outline.tags);
         const FT_Vector* const points = outline.points;
 
         for (int c = 0; c < outline.n_contours; ++c)
